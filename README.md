@@ -18,11 +18,11 @@ Add the plugin to your Unreal project:
 mkdir Plugins/GameFeatures
 cd Plugins/GameFeatures
 
-git clone <this repo>
+git clone https://github.com/DLR-TS/ue_vehicle_feature.git
 ```
 or:
 ```sh
-git submodule add <this repo>
+git submodule add https://github.com/DLR-TS/ue_vehicle_feature.git
 ```
 
 # Configuration

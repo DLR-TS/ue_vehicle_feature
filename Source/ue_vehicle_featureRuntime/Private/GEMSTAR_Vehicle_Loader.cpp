@@ -18,7 +18,7 @@ void UGEMSTAR_Vehicle_Loader::BeginPlay()
 	AGEMSTARRoot* GemstarRoot = Cast<AGEMSTARRoot>(OwnerActor);
 	if (GemstarRoot)
 	{
-		if (GemstarRoot->UseSimVehicles)
+		if (GemstarRoot->UseVehicles)
 		{
 			FTransform SpawnTransform;
 

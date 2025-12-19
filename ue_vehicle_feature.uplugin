@@ -3,7 +3,7 @@
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "ue_vehicle_feature",
-	"Description": "",
+	"Description": "GEMSTAR Vehicle Feature",
 	"Category": "Game Features",
 	"CreatedBy": "DLR-TS",
 	"CreatedByURL": "https://github.com/DLR-TS",
