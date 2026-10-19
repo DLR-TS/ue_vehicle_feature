@@ -1,47 +1,63 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+/*
+ * Copyright (c) 2026 DLR e.V.
+ *
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ */
 
 #include "GEMSTAR_Vehicle_Loader.h"
 
-// Sets default values for this component's properties
+#include "Subsystems/GemstarSimulationSubsystem.h"
+#include "VehicleManager.h"
+
 UGEMSTAR_Vehicle_Loader::UGEMSTAR_Vehicle_Loader()
 {
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-
-// Called when the game starts
 void UGEMSTAR_Vehicle_Loader::BeginPlay()
 {
 	Super::BeginPlay();
-	AActor* OwnerActor = GetOwner();
-	AGEMSTARRoot* GemstarRoot = Cast<AGEMSTARRoot>(OwnerActor);
-	if (GemstarRoot)
-	{
-		if (GemstarRoot->UseVehicles)
-		{
-			FTransform SpawnTransform;
 
-			FActorSpawnParameters SpawnParams;
-			AVehicleManager* SpawnedVehicleActor = GetWorld()->SpawnActor<AVehicleManager>(AVehicleManager::StaticClass(), SpawnTransform, SpawnParams);
+	UWorld* World = GetWorld();
 
-			TMap<FString, FInnerConfig> config = GemstarRoot->RegisterManagerAndGetConfiguration(SpawnedVehicleActor);
-			SpawnedVehicleActor->Configure(config, GemstarRoot);
-			UE_LOG(LogTemp, Log, TEXT("Registered and configured Sim Vehicles"));
-		}
+	if (World == nullptr) {
+		return;
 	}
-	else
+
+	UGemstarSimulationSubsystem* GemstarSimulationSubsystem = UGemstarSimulationSubsystem::Get(GetWorld());
+	if (GemstarSimulationSubsystem == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Error: Cast of GEMSTARRoot was not successful"));
+		UE_LOG(Vehicle, Error, TEXT("ue_vehicle_feature: simulation subsystem unavailable"));
+		return;
 	}
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = GetOwner();
+
+	VehicleManager = World->SpawnActor<AVehicleManager>(AVehicleManager::StaticClass(), FTransform::Identity, SpawnParams);
+
+	if (!IsValid(VehicleManager)) {
+		UE_LOG(Vehicle, Error, TEXT("ue_vehicle_feature: could not spawn AVehicleManager"));
+		return;
+	}
+
+	TMap<FString, FInnerConfig> config = GemstarSimulationSubsystem->RegisterManagerAndGetConfiguration(VehicleManager , "ue_vehicle_feature");
+	
+	VehicleManager->Configure(config, GemstarSimulationSubsystem);
+
+	UE_LOG(Vehicle, Log, TEXT("Registered and configured simulation vehicles"));
 }
 
-
-// Called every frame
-void UGEMSTAR_Vehicle_Loader::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UGEMSTAR_Vehicle_Loader::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (IsValid(VehicleManager)) {
+		VehicleManager->Destroy();
+		VehicleManager = nullptr;
+	}
 
-	// ...
+	Super::EndPlay(EndPlayReason);
 }
-

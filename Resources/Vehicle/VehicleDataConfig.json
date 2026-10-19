@@ -1,0 +1,56 @@
+[
+	{
+		"Name": "car",
+		"VehicleAsset": "BP_Simple_Car",
+		"OSI_BB_Center_To_Rear": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_BB_Center_To_Front": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_Ground_Clearance": 0.20000000000000001,
+		"OSI_Number_Wheels": 4,
+		"OSI_Bounding_Box": "(X=5.000000,Y=2.000000,Z=1.500000)"
+	},
+	{
+		"Name": "bus",
+		"VehicleAsset": "BP_Bus",
+		"OSI_BB_Center_To_Rear": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_BB_Center_To_Front": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_Ground_Clearance": 0.20000000000000001,
+		"OSI_Number_Wheels": 4,
+		"OSI_Bounding_Box": "(X=5.200000,Y=1.900000,Z=2.100000)"
+	},
+	{
+		"Name": "passenger",
+		"VehicleAsset": "BP_Small_Car",
+		"OSI_BB_Center_To_Rear": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_BB_Center_To_Front": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_Ground_Clearance": 0.14999999999999999,
+		"OSI_Number_Wheels": 4,
+		"OSI_Bounding_Box": "(X=3.700000,Y=1.700000,Z=1.500000)"
+	},
+	{
+		"Name": "medium",
+		"VehicleAsset": "BP_Medium_Car",
+		"OSI_BB_Center_To_Rear": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_BB_Center_To_Front": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_Ground_Clearance": 0.14999999999999999,
+		"OSI_Number_Wheels": 4,
+		"OSI_Bounding_Box": "(X=4.000000,Y=1.700000,Z=1.400000)"
+	},
+	{
+		"Name": "private",
+		"VehicleAsset": "BP_Large_Car",
+		"OSI_BB_Center_To_Rear": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_BB_Center_To_Front": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_Ground_Clearance": 0.14999999999999999,
+		"OSI_Number_Wheels": 4,
+		"OSI_Bounding_Box": "(X=4.700000,Y=1.800000,Z=1.500000)"
+	},
+	{
+		"Name": "truck",
+		"VehicleAsset": "BP_Truck",
+		"OSI_BB_Center_To_Rear": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_BB_Center_To_Front": "(X=0.000000,Y=0.000000,Z=0.000000)",
+		"OSI_Ground_Clearance": 0.20000000000000001,
+		"OSI_Number_Wheels": 4,
+		"OSI_Bounding_Box": "(X=5.300000,Y=2.300000,Z=3.700000)"
+	}
+]

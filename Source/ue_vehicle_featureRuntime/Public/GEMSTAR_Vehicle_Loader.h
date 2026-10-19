@@ -1,12 +1,20 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*
+ * Copyright (c) 2026 DLR e.V.
+ *
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ */
 
 #pragma once
-#include "VehicleManager.h"
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "GEMSTAR_Vehicle_Loader.generated.h"
 
+class AVehicleManager;
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class UE_VEHICLE_FEATURERUNTIME_API UGEMSTAR_Vehicle_Loader : public UActorComponent
@@ -14,16 +22,14 @@ class UE_VEHICLE_FEATURERUNTIME_API UGEMSTAR_Vehicle_Loader : public UActorCompo
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
 	UGEMSTAR_Vehicle_Loader();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-public:
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-
+private:
+	UPROPERTY()
+	TObjectPtr<AVehicleManager> VehicleManager;
 };
